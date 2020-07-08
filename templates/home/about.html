@@ -1,0 +1,387 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- ========== Title ========== -->
+    <title> Ratina X/Image Seletions</title>
+    <!-- ========== Favicon Ico ========== -->
+    <!--<link rel="icon" href="fav.ico">-->
+    <!-- ========== STYLESHEETS ========== -->
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'assets/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Fonts Icon CSS -->
+    <link href="{% static 'assets/css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/et-line.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/ionicons.min.css'%}" rel="stylesheet">
+    <!-- Carousel CSS -->
+    <link href="{% static 'assets/css/slick.css'%}" rel="stylesheet">
+    <!-- Magnific-popup -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css'%}">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css'%}">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
+<style>
+
+div.body_block {
+  color: white;
+  background-color: #7ee8fa;
+  background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+
+}
+body {
+  color: white;
+}
+/* div.form-check-inline{
+  background-color: #800000;
+} */
+</style>
+</head>
+<body>
+<div class="loader">
+    <div class="loader-outter"></div>
+    <div class="loader-inner"></div>
+</div>
+<form method ="post" enctype= "multipart/form-data" action = "/test2" class="content"  >
+  {% csrf_token %}
+<div class="body-container container-fluid">
+    <a class="menu-btn" href="javascript:void(0)">
+        <i class="ion ion-grid"></i>
+    </a>
+    <div class="row justify-content-center">
+        <!--=================== side menu ====================-->
+        <div class="col-lg-2 col-md-3 col-12 menu_block">
+
+          <!--logo -->
+          <div class="logo_box">
+              <a href="/test4">
+                  <img src="{% static 'assets/img/logo2.png'%}" alt="Ratina X">
+              </a>
+          </div>
+          <!--logo end-->
+
+            <!--main menu -->
+            <div class="side_menu_section">
+                <ul class="menu_nav">
+
+                    <li >
+                        <a href="/test3">
+                            Choose the Disease
+                        </a>
+
+                    </li>
+                    <li class="active">
+                        <a href="/test2">
+                        If Disease Choosen                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/test7">Annotation Tool                      </a>
+                    </li>
+                    {% if user.is_authenticated %}
+
+                              <a class="nav-link dropdown-toggle text-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Welcome {{request.user}}
+                              </a>
+                              <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-info" href="/logout">Log out</a>
+
+                              </div>
+
+                          {% else %}
+                          {% endif %}
+
+                </ul>
+            </div>
+            <!--main menu end -->
+
+
+            <!--social and copyright -->
+            <div class="side_menu_bottom">
+                <div class="side_menu_bottom_inner">
+                    <ul class="social_menu">
+                        <li>
+                            <a href="#"> <i class="ion ion-social-pinterest"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="ion ion-social-facebook"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="ion ion-social-twitter"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="ion ion-social-dribbble"></i> </a>
+                        </li>
+                    </ul>
+                    <div class="copy_right">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://google.com" target="_blank">Ratina X</a></p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+            <!--social and copyright end -->
+
+        </div>
+        <!--=================== side menu end====================-->
+
+        <!--=================== content body ====================-->
+        <div class=" col-lg-10  col-12 body_block  align-content-left">
+                <div class="container py-3">
+                    <!--=================== masaonry portfolio start====================-->
+                    <div class="grid img-container justify-content-relative  ">
+                        <!-- <div class="grid-sizer col-sm-12 col-md-6 col-lg-3"></div> -->
+                        <div class="grid-item branding  col-7  col-lg-30  dragscroll">
+
+                          <h2 style="color:white">Image Detailing:</h2><br>
+                          <input type="file" accept="image/*" onchange="loadFile(event)"  name = "Ratina_image">
+  <div class = "dragscroll">
+  <img id="Ratina_image" onclick="showMarkerJs(this, { markerColors: { mainColor: 'yellow' } });"  /><br><br>
+  <script>
+    var loadFile = function(event) {
+      var output = document.getElementById('Ratina_image');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+    };
+  </script>
+</div>
+                        </div>
+                        <div class = "float-right">
+
+                          <h4 style="color:white">Eye Selection</h4>
+
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="radio" id = "optradio" class="form-check-input" name="optradio" value="Left">Left
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="radio" id = "optradio"class="form-check-input" name="optradio" value="Right">Right
+                          </label>
+                        </div><br><br>
+                        <h4 style="color:white">Gradability</h4>
+                        <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" id = "optradio1"class="form-check-input" name="optradio1" value="Poor Quality"> Poor Quality
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label ">
+                          <input type="radio" id = "optradio1"class="form-check-input text-success" name="optradio1" value="Ungradable"> Ungradable
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio"id = "optradio1" class="form-check-input" name="optradio1" value="Gradable"> Gradable
+                        </label>
+                      </div><br><br>
+                      <div>
+                      <button class=" ml-3" type="button" onclick="zoomin()"> Zoom In</button>
+                      <button type="button" onclick="zoomout()"> Zoom Out</button>
+
+                    </div><br><br>
+
+                      <h4 style="color:white">Mark Boundary</h4>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" id = "optradio2" class="form-check-input" name="optradio2" value="Disc boundary"> Disc boundary
+                      </label>
+                      </div>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio"  id = "optradio2" class="form-check-input" name="optradio2" value="Cup boundary"> Cup boundary
+                      </label>
+                    </div><br><br>
+                      <h4 style="color:white">Optic Disc Hemorrhage:</h4>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" id = "optradio3" class="form-check-input" name="optradio3" value="Present"> Present
+                      </label>
+                      </div>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" id = "optradio3" class="form-check-input" name="optradio3" value="Absent"> Absent
+                      </label>
+                    </div><br><br>
+                      <h4 style="color:white">Rim Loss:</h4>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio"id = "optradio4"  class="form-check-input" name="optradio4" value="Present"> Present
+                      </label>
+                      </div>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" id = "optradio4" class="form-check-input" name="optradio4" value="Absent"> Absent
+                      </label>
+                    </div><br><br>
+                    <div class="form-check-inline">
+                      <h4 style="color:white">Cup-to-Disc Ratio(CDR):</h4>
+                      <label class="form-check-label">
+                      <input type="number" class="form-control" step="any" id="CDR" name = "CDR" >
+                      </div>
+                      <h4 style="color:white">Glaucoma:</h4>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" id = "optradio5" class="form-check-input" name="optradio5" value="Present"> Present
+                      </label>
+                      </div>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio"id = "optradio5"  class="form-check-input" name="optradio5" value="Absent"> Absent
+                      </label>
+                    </div><br><br>
+                    <h4 style="color:white">PPA:</h4>
+                    <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" id = "optradio6" class="form-check-input" name="optradio6"data-toggle="collapse" href="#my-alert-box1" value="Present"> Present
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio"  id = "optradio6" class="form-check-input" name="optradio6" value="Absent"> Absent
+                    </label>
+                  </div><br><br>
+                  <h4 style="color:white">RNFL:</h4>
+                  <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" id = "optradio7"class="form-check-input" name="optradio7"data-toggle="collapse" href="#my-alert-box" value="Present"> Present
+                  </label>
+                  </div>
+                  <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" id = "optradio7"class="form-check-input" name="optradio7" value="Absent"> Absent
+                  </label>
+
+                </div>
+                <div id="my-alert-box" class="alert alert-info collapse" role="alert">
+   <button type="button" class="close" data-toggle="collapse" href="#my-alert-box">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+   </button>
+   <p>Mark RNFL presence in 4 regions</p>
+</div>
+<div id="my-alert-box1" class="alert alert-info collapse" role="alert">
+<button type="button" class="close" data-toggle="collapse" href="#my-alert-box1">
+<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button>
+<p>Mark RNFL presencfgffge in 4 regions</p>
+</div><br><br>
+<button type="submit" class="btn btn-success">Submit</button>
+
+                        </div>
+        <!--=================== content body end ====================-->
+</div>
+<script type="text/javascript">
+function zoomin(){
+        var myImg = document.getElementById("Ratina_image");
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 500){
+            alert("Maximum zoom-in level reached.");
+        } else{
+            myImg.style.width = (currWidth + 50) + "px";
+        }
+    }
+    function zoomout(){
+        var myImg = document.getElementById("Ratina_image");
+        var currWidth = myImg.clientWidth;
+        if(currWidth == 250){
+            alert("Maximum zoom-out level reached.");
+        } else{
+            myImg.style.width = (currWidth - 50) + "px";
+        }
+    }
+
+</script>
+
+<!-- jquery -->
+<script src="https://unpkg.com/markerjs/markerjs.umd.js"></script>
+
+<script>
+    function showMarkerJs(img, config) {
+        let mark = new markerjs.MarkerArea(img, config);
+        mark.show((dataUrl) => {
+            img.src = dataUrl;
+        });
+    }
+
+    let previousState;
+    function showMarkerJsWithState(img) {
+        let mark = new markerjs.MarkerArea(img, { previousState: previousState });
+        mark.show((dataUrl, state) => {
+            previousState = state;
+        });
+    }
+
+    let markerArea;
+    let targetImg;
+    function showApiMarkerJs(img) {
+        targetImg = img;
+        markerArea = new markerjs.MarkerArea(img);
+        markerArea.open();
+        document.getElementById('apiDemoToolbar').style.visibility = 'visible';
+    }
+
+    function addArrow(evt) {
+        evt.preventDefault();
+        if (markerArea) {
+            markerArea.addMarker(markerjs.ArrowMarker);
+
+        }
+    }
+
+    function renderAndClose(evt) {
+        evt.preventDefault();
+        if (markerArea) {
+            markerArea.render((dataUrl) => {
+                targetImg.src = dataUrl;
+                markerArea.close();
+                print(dataUrl)
+                document.getElementById('apiDemoToolbar').style.visibility = 'hidden';
+            });
+        }
+    }
+
+    function showPayPalLogoInstructions(evt) {
+        showRemoveLogoInstructions('paypalRemoveLogo', evt);
+    }
+    function showFreeLogoInstructions(evt) {
+        showRemoveLogoInstructions('freeRemoveLogo', evt);
+    }
+    function showRemoveLogoInstructions(elementId, evt) {
+        evt.preventDefault();
+        document.getElementById(elementId).style.display = 'block';
+    }
+</script>
+
+<script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
+
+<script src="{% static 'assets/js/jquery.min.js'%}"></script>
+<!-- <script src="https://unpkg.com/markerjs"></script> -->
+
+<!-- bootstrap -->
+<script src="{% static 'assets/js/popper.js'%}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'assets/js/waypoints.min.js'%}"></script>
+<!--slick carousel -->
+<script src="{% static 'assets/js/slick.min.js'%}"></script>
+<!--Portfolio Filter-->
+<script src="{% static 'assets/js/imgloaded.js'%}"></script>
+<script src="{% static 'assets/js/isotope.js'%}"></script>
+<!-- Magnific-popup -->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js'%}"></script>
+<!--Counter-->
+<script src="{% static 'assets/js/jquery.counterup.min.js'%}"></script>
+<!-- WOW JS -->
+<script src="{% static 'assets/js/wow.min.js'%}"></script>
+<!-- Custom js -->
+<script src="{% static 'assets/js/main.js'%}"></script>
+</body>
+
+</html>
