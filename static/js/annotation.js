@@ -1235,9 +1235,9 @@ function export_project_to_coco_format() {
   var coco = { 'info':{}, 'images':[], 'annotations':[], 'licenses':[], 'categories':[] };
   coco['info'] = { 'year': new Date().getFullYear(),
                    'version': '1.0',
-                   'description': 'RATINA project exported to COCO format using VGG Image Annotator (http://www.robots.ox.ac.uk/~vgg/software/ratina/)',
+                   'description': 'RATINA project exported to COCO format using VGG Image Annotator (http://www.google.com/ratina/)',
                    'contributor': '',
-                   'url': 'http://www.robots.ox.ac.uk/~vgg/software/ratina/',
+                   'url': 'http://www.google.com/atina/',
                    'date_created': new Date().toString(),
                  };
   coco['licenses'] = [ {'id':0, 'name':'Unknown License', 'url':''} ]; // indicates that license is unknown
@@ -7470,7 +7470,7 @@ function project_file_add_abs_path_input_done(input) {
 
 function project_file_add_url_with_input() {
   var config = {'title':'Add File using URL' };
-  var input = { 'url': { type:'text', name:'add one URL', placeholder:'http://www.robots.ox.ac.uk/~vgg/software/ratina/images/swan.jpg', disabled:false, size:50 },
+  var input = { 'url': { type:'text', name:'add one URL', placeholder:'http://www.google.com', disabled:false, size:50 },
 		'url_list': { type:'textarea', name:'or, add multiple URL (one url per line)', placeholder:'http://www.example.com/image1.jpg\nhttp://www.example.com/image2.jpg\nhttp://www.example.com/image3.png', disabled:false, rows:5, cols:80 }
               };
 

@@ -21,11 +21,11 @@
 <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
 <link href="{% static 'assets/css/annotation.css'%}" rel="stylesheet">
 
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
 
+<style>
+strong {
+  font-weight: bold;
+}
 /* Fixed sidenav, full height */
 .sidenav {
   height: 100%;
@@ -56,27 +56,35 @@ body {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
+  color: #18d26e;
 }
 
 /* Main content */
 .display_area{
-  margin-left: 350px; /* Same as the width of the sidenav */
+  margin-left: 290px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 80px;
+  padding-top: 60px;
+
+}
+.display_area2{
+  margin-left: 290px; /* Same as the width of the sidenav */
   font-size: 20px; /* Increased text to enable scrolling */
   padding: 0px 60px;
-  padding-top: 30px;
-}
+  padding-top: 10px;
+  vertical-align:top;
 
+}
 /* Add an active class to the active dropdown button */
 .active {
-  background-color: green;
-  color: white;
+  background-color: #818181;
+  color: #18d26e;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: #262626;
+  background-color: #111;
   padding-left: 8px;
 }
 
@@ -93,12 +101,12 @@ body {
 }
 </style>
 </head>
+
 <body onload="_ratina_init()" onresize="_ratina_update_ui_components()">
   <!-- to show status messages -->
   <div id="message_panel">
     <div id="message_panel_content" class="content"></div>
   </div>
-
 
 
 
@@ -113,8 +121,6 @@ body {
       </a>
   </div>
   <a onclick="sel_local_images()" title="Add images locally stored in this computer" href="#loadfile">Load File</a>
-  <a onclick="zoom_in()" href="#Zoom1" >Zoom In</a>
-  <a onclick="zoom_out()" href="#Zoom2">Zoom Out</a>
   <button class="dropdown-btn">Region Shape
     <i class="fa fa-caret-down"></i>
   </button>
@@ -163,16 +169,19 @@ body {
       </div>
   </div>
 </div>
+
 <div class="top_panel" id="ui_top_panel">
   <!-- Shortcut toolbar -->
+  <!-- Button trigger modal -->
+  <input type="file" id="invisible_file_input" name="files[]" style="display:none">      </div>
 
-  <!-- end of shortcut toolbar -->
-  <input type="file" id="invisible_file_input" name="files[]" style="display:none">
-  </div>
+
+
+
   <div id="leftsidebar">
 
     <div  id="project_panel_title"></div>
-    <div class = "display_area"  id="project_info_panel">
+    <div class = "display_area "  id="project_info_panel">
         <span class="col"><label for="project_name"> FILE Name: </label></span>
         <span class="col"><input type="text" value="" onchange="project_on_name_update(this)" id="project_name" title="RATINA project name"></span>
     </div>
@@ -180,9 +189,9 @@ body {
 
     </div>
 
-
-
-<div class="display_area">
+<div class = "display_area float-centre">
+  <button class="btn btn-success" onclick="zoom_in()" href="#Zoom1" >Zoom In</button>
+  <button class="btn btn-success" onclick="zoom_out()" href="#Zoom2">Zoom Out</button>
   <div id="image_panel" class="display_area_content display_none">
 
     <div id="img_fn_list"></div>
@@ -198,10 +207,7 @@ body {
       <div id="image_grid_nav"></div>
     </div>
 
-    <div id="image_grid_content">
-      <div id="image_grid_content_img"></div>
-      <svg xmlns:xlink="http://www.w3.org/2000/svg" id="image_grid_content_rshape"></svg>
-    </div>
+
 
     <div id="image_grid_info">
     </div>
@@ -212,10 +218,147 @@ body {
 
 
 </div> <!-- end of display_area -->
-</div>
-<div style="width: 100%;" id="vertical_space"></div>
+<form method ="post" enctype= "multipart/form-data" action = "" class="content">
+{% csrf_token %}
+<div  class="display_area float-left">
+  <strong style="color:black">Choose Disease :</strong><br><br>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" id = "optradio8" class="form-check-input" name="optradio8" value="Left">Diabetic Retinopathy (DR)
+  </label>
+  </div>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" id = "optradio8" class="form-check-input" name="optradio8" value="Left">Glaucoma
+  </label>
+  </div>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" id = "optradio8"class="form-check-input" name="optradio8" value="Right">Others
+  </label>
+  </div><br><br>
+  <strong style="color:black">Eye Selection :</strong><br><br>
 
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" id = "optradio" class="form-check-input" name="optradio" value="Left">Left
+  </label>
+</div>
+<div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" id = "optradio"class="form-check-input" name="optradio" value="Right">Right
+  </label>
+</div><br><br>
+<strong style="color:black">Gradability :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+  <input type="radio" id = "optradio1"class="form-check-input" name="optradio1" value="Poor Quality"> Poor Quality
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label ">
+  <input type="radio" id = "optradio1"class="form-check-input text-success" name="optradio1" value="Ungradable"> Ungradable
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+  <input type="radio"id = "optradio1" class="form-check-input" name="optradio1" value="Gradable"> Gradable
+</label>
+</div><br><br>
+
+
+<strong style="color:black">Mark Boundary :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio2" class="form-check-input" name="optradio2" value="Disc boundary"> Disc boundary
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio"  id = "optradio2" class="form-check-input" name="optradio2" value="Cup boundary"> Cup boundary
+</label>
+</div><br><br>
+<strong style="color:black">Optic Disc Hemorrhage :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio3" class="form-check-input" name="optradio3" value="Present"> Present
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio3" class="form-check-input" name="optradio3" value="Absent"> Absent
+</label>
+</div><br><br>
+<strong style="color:black">Rim Loss :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio"id = "optradio4"  class="form-check-input" name="optradio4" value="Present"> Present
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio4" class="form-check-input" name="optradio4" value="Absent"> Absent
+</label>
+</div><br><br>
+<div class="form-check-inline">
+<strong style="color:black">Cup-to-Disc Ratio(CDR):</strong><br><br>
+<label class="form-check-label">
+<input type="number" class="form-control" step="any" id="CDR" name = "CDR" >
+</div><br><br>
+<strong style="color:black">Glaucoma :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio5" class="form-check-input" name="optradio5" value="Present"> Present
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio"id = "optradio5"  class="form-check-input" name="optradio5" value="Absent"> Absent
+</label>
+</div><br><br>
+<strong style="color:black">PPA :</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio6" class="form-check-input" name="optradio6"data-toggle="collapse" href="#my-alert-box1" value="Present"> Present
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio"  id = "optradio6" class="form-check-input" name="optradio6" value="Absent"> Absent
+</label>
+</div><br><br>
+<strong style="color:black">RNFL:</strong><br><br>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio7"class="form-check-input" name="optradio7"data-toggle="collapse" href="#my-alert-box" value="Present"> Present
+</label>
+</div>
+<div class="form-check-inline">
+<label class="form-check-label">
+<input type="radio" id = "optradio7"class="form-check-input" name="optradio7" value="Absent"> Absent
+</label>
+
+</div>
+<div id="my-alert-box" class="alert alert-info collapse" role="alert">
+<button type="button" class="close" data-toggle="collapse" href="#my-alert-box">
+<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button>
+<p>Mark RNFL presence in 4 regions</p>
+</div>
+<div id="my-alert-box1" class="alert alert-info collapse" role="alert">
+<button type="button" class="close" data-toggle="collapse" href="#my-alert-box1">
+<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button>
+<p>Mark RNFL presencfgffge in 4 regions</p>
+</div><br><br>
+<button type="submit" class="btn btn-success">Submit</button>
+
+</div>
+
+</div>
+</form>
 <script src="{% static 'js/annotation.js'%}"></script>
+<script src="{% static 'assets/js/wheel-zoom.min.js'%}" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -228,4 +371,6 @@ body {
   ga('send', 'pageview');
   </script>
 </body>
+
+
 </html>

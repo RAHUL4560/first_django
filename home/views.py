@@ -2,7 +2,6 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import authenticate,login ,logout
 from django.contrib import messages
 from home.models import Image_details
-from home.models import Image_upload
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 import matplotlib.pyplot as plt
@@ -21,10 +20,12 @@ def home(request):
     return render(request,'home/index.html')
 def test(request):
     return render(request,'home/homepage.html')
-def test2(request):
+def test7(request):
     Sql_data= Image_details.objects.all()
     if request.method == 'POST':
+
         CDR = request.POST['CDR']
+        # exampleRadios1 = request.POST['exampleRadios1']
         optradio = request.POST['optradio']
         optradio1 = request.POST['optradio1']
         optradio2 = request.POST['optradio2']
@@ -33,19 +34,10 @@ def test2(request):
         optradio5 = request.POST['optradio5']
         optradio6 = request.POST['optradio6']
         optradio7 = request.POST['optradio7']
-        test2 = Image_details(CDR =CDR ,optradio=optradio,optradio1=optradio1,optradio2=optradio2,optradio3=optradio3,optradio4=optradio4,optradio5=optradio5,optradio6=optradio6,optradio7=optradio7)
-        test2.save()
-    return render(request,'home/about.html')
-def test3(request):
-    Sql_data= Image_upload.objects.all()
-    if request.method == 'POST':
-        Annotations_image = request.POST['Annotations_image']
-        f4 = FileSystemStorage()
-        f4.save(Annotations_image.name,Annotations_image)
-        exampleRadios1 = request.POST['exampleRadios1']
-        test3 = Image_upload(Annotations_image=Annotations_image,exampleRadios1=exampleRadios1)
-        test3.save()
-    return render(request,'base1.html')
+        optradio8 = request.POST['optradio8']
+        test7 = Image_details(CDR =CDR ,optradio=optradio,optradio1=optradio1,optradio2=optradio2,optradio3=optradio3,optradio4=optradio4,optradio5=optradio5,optradio6=optradio6,optradio7=optradio7,optradio8=optradio8)
+        test7.save()
+    return render(request,'home/annotation_tool.html')
 def test4(request):
     return render(request,'home/index.html')
 def test5(request):
@@ -97,9 +89,7 @@ def handleLogout(request):
         return redirect('/')
 
 def test6(request):
-            return render(request,'home/image_test.html')
-def test7(request):
-            return render(request,'home/annotation_tool.html')
+            return render(request,'home/demo-image.html')
 
 
 def image_metadata(request):

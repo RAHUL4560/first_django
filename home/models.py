@@ -16,7 +16,10 @@ class Image_details(models.Model):
  radio4 = (
         ('Present', 'Present'),
         ('Absent', 'Absent'),)
-
+ radio5 = (
+             ('Diabetic Retinopathy (DR)', 'Diabetic Retinopathy (DR)'),
+             (' Glaucoma', '  Glaucoma'),
+             ('Others','Others'),)
 
  CDR= models.FloatField(default=0.1)
  optradio = models.CharField(max_length = 20, choices = radio, default='Left')
@@ -27,14 +30,8 @@ class Image_details(models.Model):
  optradio5 = models.CharField(max_length = 20, choices = radio4, default='Present')
  optradio6 = models.CharField(max_length = 20, choices = radio4, default='Present')
  optradio7 = models.CharField(max_length = 20, choices = radio4, default='Present')
+ optradio8 = models.CharField(max_length = 20, choices = radio5, default='Diabetic Retinopathy (DR)')
 
-class Image_upload(models.Model):
- radio5 = (
-          ('Diabetic Retinopathy (DR)', 'Diabetic Retinopathy (DR)'),
-          (' Glaucoma', '  Glaucoma'),
-          ('Others','Others'),)
- exampleRadios1 = models.CharField(max_length = 50, choices = radio5, default='Diabetic Retinopathy (DR)')
- Annotations_image= models.ImageField(upload_to='img/')
 
 class LoadedImagedata(models.Model):
     """LoadedImagedata"""
