@@ -30,7 +30,7 @@ class Image_details(models.Model):
  optradio5 = models.CharField(max_length = 20, choices = radio4, default='Present')
  optradio6 = models.CharField(max_length = 20, choices = radio4, default='Present')
  optradio7 = models.CharField(max_length = 20, choices = radio4, default='Present')
- optradio8 = models.CharField(max_length = 20, choices = radio5, default='Diabetic Retinopathy (DR)')
+ optradio8 = models.CharField(max_length = 100, choices = radio5, default='Diabetic Retinopathy (DR)')
 
 
 class LoadedImagedata(models.Model):
