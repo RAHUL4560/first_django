@@ -24,6 +24,8 @@
   <link href="{% static 'lib/ionicons/css/ionicons.min.css'%}" rel="stylesheet">
   <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
   <link href="{% static 'lib/lightbox/css/lightbox.min.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
   <!-- Main Stylesheet File -->
   <link href="{% static 'css/style.css'%}" rel="stylesheet">
@@ -91,7 +93,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id = "signupModaltitle">SignUp Here</h5>
+        <h3 class="modal-title" id = "signupModaltitle">Sign up</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -99,32 +101,32 @@
       <div class="modal-body">
         <form action = '/signup' method = 'post'>
   <div class="form-group">
-    <label for="username">User Name</label>
-    <input type="text" class="form-control" id="username" name = "username" placeholder="Choose a username">
+    <strong style="color:black" for="username">User Name</strong>
+    <input type="text" class="form-control" id="username" name = "username" placeholder="Choose a username" required>
   </div>
   <div class="form-group">
-    <label for="fname">First Name</label>
+    <strong style="color:black" for="fname">First Name</strong>
     <input type="text" class="form-control" id="fname" name = "fname" placeholder="First Name" required>
   </div>
   <div class="form-group">
-    <label for="lname">Last Name</label>
+    <strong style="color:black" for="lname">Last Name</strong>
     <input type="text" class="form-control" id="lname" name = "lname" placeholder="Last Name" required>
   </div>
   <div class="form-group">
-    <label for="email">Email address</label>
+    <strong style="color:black" for="email">Email address</strong>
     <input type="email" class="form-control" id="email" name = "email" placeholder="name@example.com" required>
   </div>
   <div class="form-group">
-    <label for="pass1"> Password </label>
+    <strong style="color:black" for="pass1"> Password </strong>
     <input type="password" class="form-control" id="pass1" name = "pass1" placeholder="Enter your Password" required>
   </div>
   <div class="form-group">
-    <label for="pass2"> Confirm Password </label>
+    <strong style="color:black" for="pass2"> Confirm Password </strong>
     <input type="password" class="form-control" id="pass2" name = "pass2" placeholder="Enter your Password again" required>
   </div>
 
 
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="block">Submit</button>
   {% csrf_token %}
 
 </form>
@@ -139,7 +141,7 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id = "loginModaltitle">Login Here</h5>
+      <h3 class="modal-title style=color:green" id = "loginModaltitle">Login Here</h3>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <!-- <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
         <img src="{% static 'static/img/user.png'%}" alt="" class="avatar"> -->
@@ -148,20 +150,19 @@
     <div class="modal-body">
       <form action="/login" method ='post'>
 <div class="form-group">
-  <label for="username">User Name</label>
-  <i class="fas fa-user"></i>
+  <strong style="color:black" for="username">User Name</strong>
+  <i class="fas fa-user"></i><br>
 
-  <input type="text" class="form-control" id="loginusername" name = "loginusername" placeholder="Choose a username" required>
+  <input type="text" class="form-control" id="loginusername" name = "loginusername" placeholder="loginusername" required>
 </div>
 
 <div class="form-group">
   <!-- <i class="fas fa-key prefix" aria-hidden="true"></i> -->
-  <label data-error="wrong" data-success="right" for="pass"> Password </label>
-  <i class="fas fa-lock"></i>
-  <input type="password" class="form-control validate" id="loginpass" name = "loginpass" placeholder="Enter your Password" required>
+  <strong style="color:black" data-error="wrong" data-success="right" for="pass"> Password </strong>
+  <i class="fas fa-lock"></i><br>
+  <input type="password" class="form-control validate" id="loginpass" name = "loginpass" placeholder="Enter your Password" required><br>
   <!-- <span toggle="pass" class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
 
-</div>
 <!-- <div class="md-form md-outline">
   <i class="fas fa-key prefix" aria-hidden="true"></i>
   <input type="password" name="pwd" id="loginpass" class="form-control validate" required>
@@ -171,18 +172,22 @@
 
 
 {% csrf_token %}
-<button type="submit" class="btn btn-success">Submit</button>
-
+<button type="submit" class="block">Submit</button><br>
+<label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+</div>
 </form>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" >
+      <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </div>
 </div>
 {% for message in messages %}
-<div class="alert alert -{{message.tags}} alert-dismissible fade show" role="alert">
+<div class="alert alert-{{ message.level_tag }} {{ message.extra_tags|default_if_none alert-dismissible fade show" role="alert">
   <strong> Message: </strong> {{message}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <button type="button" class="close float-top" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -328,7 +333,7 @@
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="#">Dataset</a></h4>
+                <h4><a href="/test">Dataset</a></h4>
                 <p>Dataset</p>
               </div>
             </div>

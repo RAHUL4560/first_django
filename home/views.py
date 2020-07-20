@@ -19,7 +19,7 @@ import json
 def home(request):
     return render(request,'home/index.html')
 def test(request):
-    return render(request,'home/homepage.html')
+    return render(request,'home/database.html')
 def test7(request):
     Sql_data= Image_details.objects.all()
     if request.method == 'POST':
